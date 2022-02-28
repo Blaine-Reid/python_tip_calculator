@@ -1,6 +1,6 @@
 # Python Tip Calculator
 
-## ** by Blaine Reid **
+##### *by Blaine Reid*
 
 ## Description
 
