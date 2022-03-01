@@ -1,6 +1,6 @@
 # Functions for the tip calculator
 
-def get_party_size() -> int:
+def get_party_size(question, negative_input, error_message) -> int:
     '''Gets a users party size'''
 
     # flag to continue while loop
@@ -14,12 +14,11 @@ def get_party_size() -> int:
         # try and get an interger input from user
         try:
             # ask user for people in party
-            party_size = int(
-                input('How many people are in your party?\n(Please input number greater than 0 or input 0 to exit)\n'))
+            party_size = int(input(question))
 
             # if number is less than 0, restart loop
             if party_size < 0:
-                print('Please input a positive value')
+                print(negative_input)
                 continue
 
             # if the user enters 0, they want to exit
@@ -35,11 +34,10 @@ def get_party_size() -> int:
         except ValueError:
 
             # print instructions
-            print(
-                "Sorry, I need a number of people in your party.")
+            print(error_message)
 
 
-def get_bill_size() -> float:
+def get_bill_size(question, negative_input, error_message) -> float:
     '''Get the bill size from user, pre-tip'''
 
     # flag to continue while loop
@@ -52,12 +50,11 @@ def get_bill_size() -> float:
         try:
 
             # get users bill
-            bill_pre_tip = float(input(
-                "How much was the bill?\n(Please enter as a positive integer (ie 20 for a $20 bill total) or decimal (ie 20.00 (enter 0 to exit))\n"))
+            bill_pre_tip = float(input(question))
 
             # if bill is negative value, rerun loop
             if bill_pre_tip < 0:
-                print("Please input a positive value for the bill.")
+                print(negative_input)
                 continue
 
             # if bill is 0, then exit application
@@ -70,11 +67,10 @@ def get_bill_size() -> float:
             return bill_pre_tip
         # catch error of user inputing non type convertable value
         except ValueError:
-            print(
-                "Sorry, I need a number as the value for your bill")
+            print(error_message)
 
 
-def get_tip_percentage() -> float:
+def get_tip_percentage(question, negative_input, error_message) -> float:
     '''Gets the percentage to tip from the user'''
 
     # flag to continue while loop
@@ -87,12 +83,11 @@ def get_tip_percentage() -> float:
     while tip:
         # try and get a float or int value from user
         try:
-            tip_percentage = int(input(
-                "How much would you like to tip?\n(Please input a positive integer (ie. 20 for 20%))\n"))
+            tip_percentage = int(input(question))
 
             # if tip is less than 0, rerun loop
             if tip_percentage < 0:
-                print('Please input a positive value for tip percentage.')
+                print(negative_input)
                 continue
 
             # covert value given to decimal ie 20 = .20
@@ -101,7 +96,7 @@ def get_tip_percentage() -> float:
             return converted_tip
 
         except ValueError:
-            print('Sorry, I need an integer for the tip')
+            print(error_message)
 
 
 def calculate_tip(party: int, tip_percentage: float, bill: float) -> float:
@@ -117,13 +112,14 @@ def calculate_tip(party: int, tip_percentage: float, bill: float) -> float:
     return bill_per_person
 
 
-def exit_application():
+def exit_application(text_to_exit, error_message) -> bool:
+    '''Determines if user wants to exit application'''
 
     while True:    # Ask user if they want to run application again
-        run_again = input(
-            "Would you like to calculate another bill?\n(Input Yes, Y, No, or N (Casing doesn't matter))")
-        # convert value to lower case for ease
-        run_again.lower()
+        run_again = input(text_to_exit)
+
+        # # convert value to lower case for ease
+        run_again = run_again.lower()
 
         # exit application if
         if run_again == 'no' or run_again == 'n':
@@ -131,8 +127,21 @@ def exit_application():
         elif run_again == 'yes' or run_again == 'y':
             return True
         else:
-            print("Please type either Yes, Y, No, or N \n(Casing doesn't matter)")
+            print(error_message)
 
+
+def print_output(bill_pre_tip, tip_percentage, party_size, bill_per_person):
+    '''Prints a neat and clean output'''
+
+    print()
+    print("~~~~~~~~~~~~ TIP CALCULATIONS ~~~~~~~~~~~~")
+    print("Your bill total was:" + f'${bill_pre_tip:.2f}'.rjust(22))
+    print(f'Your tip percentage was:' +
+          f'{int(tip_percentage * 100)}%'.rjust(18))
+    print(f'Your party size was:' + f'{party_size}'.rjust(22))
+    print('------------------------------------------')
+    print(f'Bill per person:' + f'${bill_per_person:.2f}'.rjust(26))
+    print()
 
 # Testing function for tip calc functions
 # assert calculate_tip(get_party_size(), get_tip_percentage(),
