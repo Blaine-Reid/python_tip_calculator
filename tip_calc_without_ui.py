@@ -2,7 +2,7 @@
 # of X people, after applying a tip of X%
 
 # import functions
-from tip_calc_functions import *
+from tip_calc_functions_no_ui import *
 
 
 def tip_calculator():
