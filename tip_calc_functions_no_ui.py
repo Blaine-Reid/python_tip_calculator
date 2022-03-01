@@ -135,12 +135,18 @@ def print_output(bill_pre_tip, tip_percentage, party_size, bill_per_person):
 
     print()
     print("~~~~~~~~~~~~ TIP CALCULATIONS ~~~~~~~~~~~~")
+
     print("Your bill total was:" + f'${bill_pre_tip:.2f}'.rjust(22))
+
     print(f'Your tip percentage was:' +
           f'{int(tip_percentage * 100)}%'.rjust(18))
+
     print(f'Your party size was:' + f'{party_size}'.rjust(22))
+
     print('------------------------------------------')
+
     print(f'Bill per person:' + f'${bill_per_person:.2f}'.rjust(26))
+    
     print()
 
 # Testing function for tip calc functions
