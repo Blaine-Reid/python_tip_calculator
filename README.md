@@ -55,7 +55,7 @@
 
 ## About The Project
 
-Two versions of a tip calculator written in Python for my first project in my [Justice Through Code](https://centerforjustice.columbia.edu/justicethroughcode) program. One is written to be used completely in the command line. The other uses tkinter to create a UI for the tip calculator.
+Two versions of a tip calculator written in Python for my first project in my [Justice Through Code](https://centerforjustice.columbia.edu/justicethroughcode) program. One is written to be used completely in the CLI. The other uses tkinter to create a UI for the tip calculator.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
