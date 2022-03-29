@@ -109,12 +109,17 @@ or
 #### Step 3
 
 Run the application using your command terminal:
+Depending on your version of python, you will use either python or python3 in the CLI
 
-    py tip_calc_without_ui.py
+    python tip_calc_without_ui.py
+    or
+    python3 tip_calc_without_ui.py
 
 or
 
-    py tip_calc_with_ui.py
+    python tip_calc_with_ui.py
+    or
+    python3 tip_calc_with_ui.py
 
 #### Step 4
 

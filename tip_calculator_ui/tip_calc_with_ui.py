@@ -2,8 +2,8 @@
 # of X people, after applying a tip of X%
 
 import tkinter as tk
+from tkinter.messagebox import showinfo
 
-from tip_calc_ui_functions import *
 from tip_calc_ui_widgets import *
 from tip_calc_ui_config import *
 # Create app class and pass in tk.Tk as parent to give access to methods
@@ -39,6 +39,10 @@ class TipCalc(tk.Tk):
         self.party_size = tk.StringVar()
         self.bill_total = tk.StringVar()
         self.tip_perc = tk.IntVar()
+        self.tax_perc = tk.IntVar()
+        # Set base tax at 10%
+        self.tax_perc.set(10)
+
         self.cost_per_person = tk.StringVar()
 
         # Call createWidgets method
@@ -80,6 +84,15 @@ class TipCalc(tk.Tk):
             self.tip_perc
         )
 
+        tax = LabelEntry(
+            self,
+            tax_perc_label_config,
+            tax_perc_label_position,
+            tax_perc_entry_config,
+            tax_perc_entry_position,
+            self.tax_perc
+        )
+
         # TOTAL COST PER PERSON
         cost = Text(
             self,
@@ -102,10 +115,12 @@ class TipCalc(tk.Tk):
 
         try:
             bill = float(self.bill_total.get())
-            party = int(self.party_size.get())
-            tip = 1 + (int(self.tip_perc.get()) / 100)
+            tax_and_tip = 1 + ((int(self.tax_perc.get()) +
+                               int(self.tip_perc.get())) / 100)
 
-            bill_per_person = (bill * tip) / party
+            party = int(self.party_size.get())
+
+            bill_per_person = (bill * tax_and_tip) / party
 
             self.cost_per_person.set(f'${bill_per_person:.2f} / person')
 
