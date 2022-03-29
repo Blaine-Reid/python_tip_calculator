@@ -99,11 +99,41 @@ def get_tip_percentage(question, negative_input, error_message) -> float:
             print(error_message)
 
 
-def calculate_tip(party: int, tip_percentage: float, bill: float) -> float:
+def get_tax_percentage(question, negative_input, error_message) -> float:
+    '''Gets the percentage to tax from the user'''
+
+    # flag to continue while loop
+    tax = True
+
+    # Print a decorative title
+    print("~~~~~~~~~~~~~~~~ TAX PERCENTAGE ~~~~~~~~~~~~~~~~ \n")
+    print("~~~~~~~~~~~~~~~~ DEFAULTS TO 10% ~~~~~~~~~~~~~~~~ \n")
+
+    # loop while no errors
+    while tax:
+        # try and get a float or int value from user
+        try:
+            tax_percentage = int(input(question) or 10)
+
+            # if tip is less than 0, rerun loop
+            if tax_percentage < 0:
+                print(negative_input)
+                continue
+
+            # covert value given to decimal ie 20 = .20
+            converted_tax = tax_percentage / 100
+
+            return converted_tax
+
+        except ValueError:
+            print(error_message)
+
+
+def calculate_tip(party: int, tip_percentage: float, tax_percentage: float,  bill: float) -> float:
     '''Calculates the bill per person of a party, after applying a tip percentage'''
 
     # calculate total bill with percentage of tip applied
-    bill_w_percentage = bill * (1 + tip_percentage)
+    bill_w_percentage = bill * (1 + tip_percentage + tax_percentage)
 
     # calculate bill per person
     bill_per_person = bill_w_percentage / party
@@ -130,7 +160,7 @@ def exit_application(text_to_exit, error_message) -> bool:
             print(error_message)
 
 
-def print_output(bill_pre_tip, tip_percentage, party_size, bill_per_person):
+def print_output(bill_pre_tip, tip_percentage, tax_percentage, party_size, bill_per_person):
     '''Prints a neat and clean output'''
 
     print()
@@ -141,12 +171,15 @@ def print_output(bill_pre_tip, tip_percentage, party_size, bill_per_person):
     print(f'Your tip percentage was:' +
           f'{int(tip_percentage * 100)}%'.rjust(18))
 
+    print(f'Your tax percentage was:' +
+          f'{int(tax_percentage * 100)}%'.rjust(18))
+
     print(f'Your party size was:' + f'{party_size}'.rjust(22))
 
     print('------------------------------------------')
 
     print(f'Bill per person:' + f'${bill_per_person:.2f}'.rjust(26))
-    
+
     print()
 
 # Testing function for tip calc functions
