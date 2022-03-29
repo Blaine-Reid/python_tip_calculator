@@ -106,6 +106,34 @@ tip_perc_entry_position = {
     "pady": pady
 }
 
+
+# TAX PERCENTAGE ----------------------------
+tax_perc_label_config = {
+    "text": "Tax Percentage",
+    "background": background,
+    'font': font_sm
+}
+
+tax_perc_label_position = {
+    "column": 0,
+    "row": 4,
+    "sticky": tk.EW,
+    "padx": padx,
+    "pady": pady
+}
+
+tax_perc_entry_config = {
+    'font': font_sm,
+
+}
+tax_perc_entry_position = {
+    "column": 1,
+    "row": 4,
+    "sticky": tk.EW,
+    "padx": padx,
+    "pady": pady
+}
+
 # DISPLAY TOTAL-----------------------------------
 cost_per_person_config = {
     "background": background,
@@ -117,7 +145,7 @@ cost_per_person_config = {
 cost_per_person_position = {
     "column": 0,
     "columnspan": 2,
-    "row": 5,
+    "row": 6,
     "sticky": tk.EW,
     "padx": padx,
     "pady": pady
@@ -134,7 +162,7 @@ button_config = {
 button_position = {
     "column": 1,
     "columnspan": 1,
-    "row": 4,
+    "row": 5,
     "sticky": tk.EW,
     "padx": padx,
     "pady": pady
